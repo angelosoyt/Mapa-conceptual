@@ -6,6 +6,7 @@ import { resolve } from 'path'
 const projectRoot = process.env.PROJECT_ROOT || import.meta.dirname
 
 export default defineConfig({
+  base: "/Mapa-conceptual/",
   plugins: [
     react(),
     tailwindcss(),
