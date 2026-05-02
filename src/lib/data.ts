@@ -258,10 +258,10 @@ export const childNodes = nodesData.filter((n) => !n.isCenter)
 
 export const conceptNodeLayouts: NodeLayout[] = [
   { id: "center", centerX: 590, centerY: 70, width: 300, height: 112 },
-  { id: "timeline", centerX: 160, centerY: 220, width: 230, height: 116 },
-  { id: "differentiation", centerX: 445, centerY: 220, width: 250, height: 116 },
-  { id: "market", centerX: 735, centerY: 220, width: 250, height: 116 },
-  { id: "ai-challenges", centerX: 1020, centerY: 220, width: 245, height: 116 },
+  { id: "timeline", centerX: 160, centerY: 242, width: 230, height: 116 },
+  { id: "differentiation", centerX: 445, centerY: 242, width: 250, height: 116 },
+  { id: "market", centerX: 735, centerY: 242, width: 250, height: 116 },
+  { id: "ai-challenges", centerX: 1020, centerY: 242, width: 245, height: 116 },
   { id: "origin", centerX: 160, centerY: 410, width: 230, height: 116 },
   { id: "analysis", centerX: 445, centerY: 410, width: 250, height: 116 },
   { id: "salary", centerX: 735, centerY: 410, width: 250, height: 116 },
@@ -272,10 +272,10 @@ export const conceptNodeLayouts: NodeLayout[] = [
 ]
 
 export const conceptLinks: ConceptLink[] = [
-  { from: "center", to: "timeline", label: "se entiende por", labelOffsetX: -12 },
-  { from: "center", to: "differentiation", label: "se define frente a", labelOffsetY: -10 },
-  { from: "center", to: "market", label: "se justifica por", labelOffsetY: -10 },
-  { from: "center", to: "ai-challenges", label: "se actualiza ante", labelOffsetX: 12 },
+  { from: "center", to: "timeline", label: "se entiende por", labelOffsetX: -12, labelOffsetY: 4 },
+  { from: "center", to: "differentiation", label: "se define frente a", labelOffsetY: 4 },
+  { from: "center", to: "market", label: "se justifica por", labelOffsetY: 4 },
+  { from: "center", to: "ai-challenges", label: "se actualiza ante", labelOffsetX: 12, labelOffsetY: 4 },
   { from: "timeline", to: "origin", label: "converge en" },
   { from: "differentiation", to: "analysis", label: "se compara en" },
   { from: "market", to: "salary", label: "se refleja en" },

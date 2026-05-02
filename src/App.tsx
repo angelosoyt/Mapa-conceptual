@@ -21,6 +21,7 @@ import {
   conceptNodeLayouts,
   nodesData,
   type NodeData,
+  type NodeLayout,
 } from "@/lib/data"
 
 const minimumZoom = 0.25
@@ -53,6 +54,24 @@ type PinchGesture = {
 
 function clamp(value: number, minimum: number, maximum: number) {
   return Math.min(Math.max(value, minimum), maximum)
+}
+
+function getReadableNodeLayout(nodeLayout: NodeLayout, node?: NodeData): NodeLayout {
+  if (!node) return nodeLayout
+
+  const estimatedTitleWidth = Math.ceil(
+    node.title.length * (node.isCenter ? 9.5 : 7.4) + (node.isCenter ? 150 : 104)
+  )
+  const widthLimit = node.isCenter ? 330 : 304
+  const width = Math.max(nodeLayout.width, Math.min(estimatedTitleWidth, widthLimit))
+  const hasLongTitle = !node.isCenter && node.title.length >= 18
+  const height = hasLongTitle ? Math.max(nodeLayout.height, 124) : nodeLayout.height
+
+  return {
+    ...nodeLayout,
+    width,
+    height,
+  }
 }
 
 function getDistance(firstPoint: ViewportPoint, secondPoint: ViewportPoint) {
@@ -309,7 +328,15 @@ function App() {
 
   const displayedZoom = Math.round(mapTransform.scale * 100)
 
-  const renderedNodes = conceptNodeLayouts.map((nodeLayout) => ({
+  const readableNodeLayouts = useMemo(
+    () =>
+      conceptNodeLayouts.map((nodeLayout) =>
+        getReadableNodeLayout(nodeLayout, nodeById.get(nodeLayout.id))
+      ),
+    [nodeById]
+  )
+
+  const renderedNodes = readableNodeLayouts.map((nodeLayout) => ({
     nodeLayout,
     node: nodeById.get(nodeLayout.id),
   }))
@@ -366,9 +393,9 @@ function App() {
             ref={mapCanvasRef}
             className="absolute left-0 top-0 h-[1040px] w-[1180px] origin-top-left"
           >
-            <CelestialBackdrop nodeLayouts={conceptNodeLayouts} />
+            <CelestialBackdrop nodeLayouts={readableNodeLayouts} />
             <ConnectionLines
-              nodeLayouts={conceptNodeLayouts}
+              nodeLayouts={readableNodeLayouts}
               links={conceptLinks}
             />
 

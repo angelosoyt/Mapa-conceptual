@@ -62,8 +62,8 @@ export function MapNode({
         whileTap={{ scale: 0.98 }}
         transition={{ duration: 0.2 }}
         className={cn(
-          "group relative h-full w-full cursor-pointer overflow-hidden rounded-full border-2 px-5 py-4 text-center shadow-xl transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-          "flex flex-col items-center justify-center gap-2",
+          "group relative h-full w-full cursor-pointer overflow-hidden rounded-full border-2 px-5 py-3 text-center shadow-xl transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+          "flex flex-col items-center justify-center gap-1.5",
           colorMap[colorKey],
           isSelected && "ring-4 ring-accent ring-offset-2 ring-offset-background"
         )}
@@ -77,7 +77,7 @@ export function MapNode({
         <span className="pointer-events-none absolute left-1/2 top-1/2 h-[72%] w-[112%] -translate-x-1/2 -translate-y-1/2 rotate-[-7deg] rounded-full border border-violet-100/18 opacity-70 transition group-hover:border-violet-100/36" />
         <span className="pointer-events-none absolute right-[16%] top-[18%] h-2 w-2 rounded-full bg-white/80 shadow-[0_0_14px_rgba(255,255,255,0.85)]" />
 
-        <div className="relative z-10 flex items-center justify-center gap-2">
+        <div className="relative z-10 flex h-10 shrink-0 items-center justify-center gap-2">
           <span
             className={cn(
               "flex h-9 w-9 shrink-0 items-center justify-center rounded-full sm:h-10 sm:w-10",
@@ -98,8 +98,10 @@ export function MapNode({
 
         <span
           className={cn(
-            "relative z-10 block max-w-[92%] rounded-full border border-white/12 bg-black/58 px-3 py-1.5 text-balance font-extrabold leading-tight text-white shadow-[inset_0_0_18px_rgba(15,3,35,0.72),0_4px_18px_rgba(0,0,0,0.56)] backdrop-blur-[2px] [text-shadow:0_2px_8px_rgba(0,0,0,1),0_0_14px_rgba(255,255,255,0.3)]",
-            node.isCenter ? "text-xl sm:text-2xl" : "text-[1.05rem]"
+            "relative z-10 flex max-w-[96%] items-center justify-center rounded-full border border-white/12 bg-black/58 text-balance font-extrabold text-white shadow-[inset_0_0_18px_rgba(15,3,35,0.72),0_4px_18px_rgba(0,0,0,0.56)] backdrop-blur-[2px] [text-shadow:0_2px_8px_rgba(0,0,0,1),0_0_14px_rgba(255,255,255,0.3)]",
+            node.isCenter
+              ? "min-h-11 px-4 py-1 text-xl leading-[1.22] sm:text-2xl"
+              : "min-h-[3rem] px-3.5 py-1 text-[1.05rem] leading-[1.34]"
           )}
         >
           {node.title}
